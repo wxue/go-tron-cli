@@ -1,37 +1,38 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"os"
 	"text/template"
 
 	"github.com/urfave/cli"
 )
 
-func config(c *cli.Context) error {
-	// Prepare some data to insert into the template.
-	type NodeConfig struct {
-		Type string
-	}
-	nc := NodeConfig{"mainnet"}
+type NodeConfig struct {
+	Type         string
+	FullNodePort string
+	SolNodePort  string
+}
 
-	// Create a new template and parse the letter into it.
-	// t := template.Must(template.New("config").Parse(ConfigTemplate))
+func config(c *cli.Context) error {
+	var nc NodeConfig
+	nc.Type = networkType
+	nc.FullNodePort = fullNodePort
+	nc.SolNodePort = solNodePort
+
+	// load config template from file
 	t, err := template.ParseFiles("config.tmpl")
 	if err != nil {
 		return err
 	}
 
-	// save to file
+	// create file descriptor
 	f, err := os.Create("config.conf")
 	if err != nil {
-		fmt.Println(err)
 		f.Close()
 		return err
 	}
 
-	// Execute the template for each nc.
+	// write node config
 	err = t.Execute(f, nc)
 	if err != nil {
 		return err
