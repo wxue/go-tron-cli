@@ -42,10 +42,16 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
+			Name:    "init",
+			Aliases: []string{"i"},
+			Usage:   "init",
+			Action:  initialize,
+		},
+		{
 			Name:    "config",
 			Aliases: []string{"c"},
 			Usage:   "config",
-			Action:  config,
+			Action:  configure,
 		},
 	}
 

@@ -1,48 +1,48 @@
 net {
     type = {{.Type}}
-    # type = testnet
+    // type = testnet
   }
 
   storage {
-    # Directory for storing persistent data
+    // Directory for storing persistent data
     db.version = 2,
     db.engine = "LEVELDB",
     db.directory = "database",
     index.directory = "index",
     
-    # This configuration item is only for SolidityNode.
-    # Turn off the index is "off", else "on".
-    # Turning off the index will significantly improve the performance of the SolidityNode sync block.
-    # You can turn off the index if you don't use the two interfaces getTransactionsToThis and getTransactionsFromThis.
-    index.switch = "off"
+    // This configuration item is only for SolidityNode.
+    // Turn off the index is "off", else "on".
+    // Turning off the index will significantly improve the performance of the SolidityNode sync block.
+    // You can turn off the index if you don't use the two interfaces getTransactionsToThis and getTransactionsFromThis.
+    index.switch = "off",
     
-    # This configuration item is used to database write strategy.
-    # Synchronous writing is "true", else Asynchronous writing is "false".
-    # Asynchronous writing significantly improves the performance of the FullNode sync block.
-    # 1. If asynchronous, the write will be flushed from the operating system buffer cache.
-    #    the machine crashes, some recent writes may be lost. Note that if it is just the process that
-    #    crashes (i.e., the machine does not reboot), no writes will be lost;
-    # 2. If synchronous, writes will be flush into leveldb directly.
-    #     No writes will be lost when machine crashes, but it is slow.
+    // This configuration item is used to database write strategy.
+    // Synchronous writing is "true", else Asynchronous writing is "false".
+    // Asynchronous writing significantly improves the performance of the FullNode sync block.
+    // 1. If asynchronous, the write will be flushed from the operating system buffer cache.
+    //    the machine crashes, some recent writes may be lost. Note that if it is just the process that
+    //    crashes (i.e., the machine does not reboot), no writes will be lost;
+    // 2. If synchronous, writes will be flush into leveldb directly.
+    //     No writes will be lost when machine crashes, but it is slow.
     db.sync = false,
     
-    # This configuration item controls the transaction result be put into transactionHistory database.
-    # Turn off the switch is "off", else "on".
-    # Turning off the switch, transaction result will not be put into transactionHistory database;
-    # You can turn off the switch if you don't use the interface getransactioninfobyid.
+    // This configuration item controls the transaction result be put into transactionHistory database.
+    // Turn off the switch is "off", else "on".
+    // Turning off the switch, transaction result will not be put into transactionHistory database;
+    // You can turn off the switch if you don't use the interface getransactioninfobyid.
     transHistory.switch = "on",
     
 
-    # You can custom these 14 databases' configs:
+    // You can custom these 14 databases' configs:
 
-    # account, account-index, asset-issue, block, block-index,
-    # block_KDB, peers, properties, recent-block, trans,
-    # utxo, votes, witness, witness_schedule.
+    // account, account-index, asset-issue, block, block-index,
+    // block_KDB, peers, properties, recent-block, trans,
+    // utxo, votes, witness, witness_schedule.
 
-    # Otherwise, db configs will remain defualt and data will be stored in
-    # the path of "output-directory" or which is set by "-d" ("--output-directory").
+    // Otherwise, db configs will remain defualt and data will be stored in
+    // the path of "output-directory" or which is set by "-d" ("--output-directory").
 
-    # Attention: name is a required field that must be set !!!
+    // Attention: name is a required field that must be set !!!
     properties = [
   //    {
   //      name = "account",
@@ -87,11 +87,11 @@ net {
   }
 
   node {
-    # trust node for solidity node
-    # trustNode = "ip:port"
+    // trust node for solidity node
+    // trustNode = "ip:port"
     trustNode = "127.0.0.1:50051"
 
-    # expose extension api to public or not
+    // expose extension api to public or not
     walletExtensionApi = true
 
     listen.port = 18888
@@ -102,8 +102,8 @@ net {
 
     udpNettyWorkThreadNum = 1
 
-    # Number of validate sign thread, default availableProcessors / 2
-    # validateSignThreadNum = 16
+    // Number of validate sign thread, default availableProcessors / 2
+    // validateSignThreadNum = 16
 
     connectFactor = 0.3
     activeConnectFactor = 0.1
@@ -116,7 +116,7 @@ net {
     
     maxHttpConnectNumber = 50
 
-    # check the peer data transfer ,disconnect factor
+    // check the peer data transfer ,disconnect factor
     disconnectNumberFactor = 0.4
     maxConnectNumberFactor = 0.8
     maxHttpConnectNumber = 50
@@ -124,21 +124,21 @@ net {
     isOpenFullTcpDisconnect = true
 
     p2p {
-      version = 11111 # 11111: mainnet; 20180622: testnet
+      version = 11111 // 11111: mainnet; 20180622: testnet
     }
 
     active = [
-      # Active establish connection in any case
-      # Sample entries:
-      # "ip:port",
-      # "ip:port"
+      // Active establish connection in any case
+      // Sample entries:
+      // "ip:port",
+      // "ip:port"
     ]
 
     passive = [
-      # Passive accept connection in any case
-      # Sample entries:
-      # "ip:port",
-      # "ip:port"
+      // Passive accept connection in any case
+      // Sample entries:
+      // "ip:port",
+      // "ip:port"
     ]
     
     fastForward = [
@@ -154,44 +154,44 @@ net {
     rpc {
       port = 50051
       solidityPort = 50061
-      # Number of gRPC thread, default availableProcessors / 2
-      # thread = 16
+      // Number of gRPC thread, default availableProcessors / 2
+      // thread = 16
 
-      # The maximum number of concurrent calls permitted for each incoming connection
-      # maxConcurrentCallsPerConnection =
+      // The maximum number of concurrent calls permitted for each incoming connection
+      // maxConcurrentCallsPerConnection =
 
-      # The HTTP/2 flow control window, default 1MB
-      # flowControlWindow =
+      // The HTTP/2 flow control window, default 1MB
+      // flowControlWindow =
 
-      # Connection being idle for longer than which will be gracefully terminated
+      // Connection being idle for longer than which will be gracefully terminated
       maxConnectionIdleInMillis = 60000
 
-      # Connection lasting longer than which will be gracefully terminated
-      # maxConnectionAgeInMillis =
+      // Connection lasting longer than which will be gracefully terminated
+      // maxConnectionAgeInMillis =
 
-      # The maximum message size allowed to be received on the server, default 4MB
-      # maxMessageSize =
+      // The maximum message size allowed to be received on the server, default 4MB
+      // maxMessageSize =
 
-      # The maximum size of header list allowed to be received, default 8192
-      # maxHeaderListSize =
+      // The maximum size of header list allowed to be received, default 8192
+      // maxHeaderListSize =
     }
     blockProducedTimeOut = 50
-    # number of solidity thread in the FullNode.
-    # If accessing solidity rpc and http interface timeout, could increase the number of threads,
-    # The default value is the number of cpu cores of the machine.
-    #solidity.threads = 8
+    // number of solidity thread in the FullNode.
+    // If accessing solidity rpc and http interface timeout, could increase the number of threads,
+    // The default value is the number of cpu cores of the machine.
+    //solidity.threads = 8
   }
 
 
 
   seed.node = {
-    # List of the seed nodes
-    # Seed nodes are stable full nodes
-    # example:
-    # ip.list = [
-    #   "ip:port",
-    #   "ip:port"
-    # ]
+    // List of the seed nodes
+    // Seed nodes are stable full nodes
+    // example:
+    // ip.list = [
+    //   "ip:port",
+    //   "ip:port"
+    // ]
     ip.list = [
       "54.236.37.243:18888",
       "52.53.189.99:18888",
@@ -213,7 +213,7 @@ net {
   }
 
   genesis.block = {
-    # Reserve balance
+    // Reserve balance
     assets = [
       {
         accountName = "Zion"
@@ -373,7 +373,7 @@ net {
       }
     ]
 
-    timestamp = "0" #2017-8-26 12:00:00
+    timestamp = "0" //2017-8-26 12:00:00
 
     parentHash = "0xe58f33f9baf9305dc6f82b9f1934ea8f0ade2defb951258d50167028c780351f"
   }
@@ -381,9 +381,9 @@ net {
   localwitness = [
   ]
 
-  #localwitnesskeystore = [
-  #  "localwitnesskeystore.json"
-  #]
+  //localwitnesskeystore = [
+  //  "localwitnesskeystore.json"
+  //]
 
   block = {
     needSyncCheck = true
@@ -391,11 +391,11 @@ net {
     proposalExpireTime = 259200000 // 3 day: 259200000(ms)
   }
 
-  # Transaction reference block, default is "head", configure to "solid" can avoid TaPos error
+  // Transaction reference block, default is "head", configure to "solid" can avoid TaPos error
   trx.reference.block = "head" // head;solid;
 
-  # This property sets the number of milliseconds after the creation of the transaction that is expired, default value is 60000.
-  # trx.expiration.timeInMilliseconds = 60000
+  // This property sets the number of milliseconds after the creation of the transaction that is expired, default value is 60000.
+  // trx.expiration.timeInMilliseconds = 60000
 
   vm = {
     supportConstant = false

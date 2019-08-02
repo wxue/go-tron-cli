@@ -13,7 +13,7 @@ type NodeConfig struct {
 	SolNodePort  string
 }
 
-func config(c *cli.Context) error {
+func configure(c *cli.Context) error {
 	var nc NodeConfig
 	nc.Type = networkType
 	nc.FullNodePort = fullNodePort
