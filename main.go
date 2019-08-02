@@ -21,19 +21,19 @@ func main() {
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name:        "ntype, nt",
+			Name:        "typen, tn",
 			Usage:       "network type",
 			Value:       "mainnet",
 			Destination: &networkType,
 		},
 		cli.StringFlag{
-			Name:        "fport, fp",
+			Name:        "portf, pf",
 			Usage:       "fullnode port",
 			Value:       "8090",
 			Destination: &fullNodePort,
 		},
 		cli.StringFlag{
-			Name:        "sport, sp",
+			Name:        "ports, ps",
 			Usage:       "solidity port",
 			Value:       "8091",
 			Destination: &solNodePort,
@@ -52,6 +52,12 @@ func main() {
 			Aliases: []string{"c"},
 			Usage:   "config",
 			Action:  configure,
+		},
+		{
+			Name:    "run",
+			Aliases: []string{"c"},
+			Usage:   "run",
+			Action:  run,
 		},
 	}
 

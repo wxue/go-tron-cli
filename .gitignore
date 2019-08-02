@@ -12,5 +12,6 @@
 *.out
 
 /bin
+/temp
 
 *.conf
